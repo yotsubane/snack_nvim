@@ -21,3 +21,23 @@ map('n', 'yy', '"+Y')
 -- Coller depuis le clipboard système
 map({'n', 'v'}, 'p', '"+p', { desc = 'Paste from system clipboard' })
 map({'n', 'v'}, 'P', '"+P', { desc = 'Paste before from system clipboard' })
+map({'n'}, "<tab>", "<c-w>w", { desc = "Go other pane"})
+
+-- Transparent
+require("transparent").setup({
+  -- table: default groups
+  groups = {
+    'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+    'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+    'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+    'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+    'EndOfBuffer','SnacksPicker' 
+  },
+  -- table: additional groups that should be cleared
+  extra_groups = {},
+  -- table: groups you don't want to clear
+  exclude_groups = {},
+  -- function: code to be executed after highlight groups are cleared
+  -- Also the user event "TransparentClear" will be triggered
+  on_clear = function() end,
+})

@@ -1,4 +1,5 @@
 return {
+	-- Snacks
 	{
 	  "folke/snacks.nvim",
 	  priority = 1000,
@@ -7,4 +8,8 @@ return {
 	  keys = require("config.snacks").keys,
 	  init = require("config.snacks").init,
 	},
+	-- Themes
+	{ "zootedb0t/citruszest.nvim"},
+	-- Transparency
+	{ "xiyaowong/transparent.nvim"},
 }

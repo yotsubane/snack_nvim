@@ -25,7 +25,7 @@ M.opts = {
 
   styles = {
     notification = {
-      -- wo = { wrap = true } -- Activer si nécessaire
+      wo = { wrap = true }
     }
   }
 }
@@ -38,7 +38,7 @@ M.keys = {
   { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
   { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
   { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-  { "<leader>e", function() Snacks.explorer({layout = { fullscreen = true }, auto_close = true }) end, desc= "Explorer" },
+  { "<leader>e", function() Snacks.explorer({layout = { fullscreen = true, layout = { dropout = false } }, auto_close = true }) end, desc= "Explorer" },
   -- find
   { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config"), on_show = function() vim.cmd.stopinser() end, }) end, desc = "Find Config File" },
   { "<leader>fs", function() Snacks.picker.smart({on_show = function() vim.cmd.stopinsert() end,}) end, desc = "Smart Find Files" },
@@ -54,7 +54,7 @@ M.keys = {
   { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
   { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
   { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
-  -- search
+  -- search 05 59 04 69 20
   { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
   { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
   { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
@@ -71,7 +71,29 @@ M.keys = {
   { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
   { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
   { "<leader>su", function() Snacks.picker.undo({on_show = function() vim.cmd.stopinsert() end,}) end, desc = "Undo History" },
-  { "<leader>uC", function() Snacks.picker.colorschemes({on_show = function() vim.cmd.stopinsert() end,}) end, desc = "Colorschemes" },
+  { "<leader>uC", function() Snacks.picker.colorschemes({
+	confirm = function(picker, item)
+    	picker:close()
+    	if item then
+      		picker.preview.state.colorscheme = nil
+      		vim.schedule(function()
+        		vim.cmd("colorscheme " .. item.text)
+      		end)
+			vim.schedule(function()
+				local config_file = vim.fn.stdpath("config") .. "/lua/config/theme.lua"
+				local content = "vim.cmd('colorscheme ".. item.text.."')\n"
+				local file = io.open(config_file, "w")
+				if not file then
+					print("Erreur lors de l'ouverture du fihcier: " .. config_file)
+					return
+				end
+				file:write(content)
+				file:close()
+			end)
+    	end
+  	end,
+	on_show = function() vim.cmd.stopinser() end,
+  }) end, desc = "Colorschemes" },
   -- LSP
   { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
   { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
@@ -89,24 +111,6 @@ M.keys = {
   { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
   { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
   { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-  {
-    "<leader>N",
-    desc = "Neovim News",
-    function()
-      Snacks.win({
-        file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-        width = 0.6,
-        height = 0.6,
-        wo = {
-          spell = false,
-          wrap = false,
-          signcolumn = "yes",
-          statuscolumn = " ",
-          conceallevel = 3,
-        },
-      })
-    end,
-  }
 }
 
 -- Initialisation personnalisée (exécutée au chargement du plugin)
