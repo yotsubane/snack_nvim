@@ -9,7 +9,10 @@ return {
 		init = require("config.snacks").init,
 	},
 	-- Themes
-	{ "zootedb0t/citruszest.nvim" },
+	{
+		"zootedb0t/citruszest.nvim",
+		"tomasr/molokai",
+	},
 	{
 		"Biscuit-Theme/nvim",
 		as = "biscuit",

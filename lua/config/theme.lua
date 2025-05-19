@@ -1,1 +1,1 @@
-vim.cmd('colorscheme biscuit')
+vim.cmd('colorscheme molokai')
