@@ -93,4 +93,14 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
+	-- Iron
+	{ "Vigemus/iron.nvim" },
+	-- Treesitter
+	{ "nvim-treesitter/nvim-treesitter" },
+	-- Mardown
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+		opts = {},
+	},
 }

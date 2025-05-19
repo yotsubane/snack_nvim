@@ -6,7 +6,7 @@ M.opts = {
 		enabled = true,
 		timeout = 1000,
 	},
-	dashboard = { enabled = true },
+	dashboard = require("config.dashboard"),
 	bigfile = { enabled = true },
 	dim = { enabled = true },
 	git = { enabled = true },
