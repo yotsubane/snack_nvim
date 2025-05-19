@@ -10,7 +10,6 @@ M.opts = {
 	bigfile = { enabled = true },
 	dim = { enabled = true },
 	git = { enabled = true },
-	indent = { enabled = true },
 	picker = { enabled = true },
 	explorer = { enabled = true },
 	quickfile = { enabled = true },

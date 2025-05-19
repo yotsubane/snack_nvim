@@ -67,3 +67,8 @@ require("transparent").setup({
 	-- Also the user event "TransparentClear" will be triggered
 	on_clear = function() end,
 })
+require("lualine").setup({
+	winbar = {
+		lualine_a = { require("doing").status },
+	},
+})

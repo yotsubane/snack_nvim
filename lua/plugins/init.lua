@@ -60,4 +60,37 @@ return {
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
+	-- TODO
+	{
+		"Hashino/doing.nvim",
+		cmd = "Do",
+		keys = {
+			{
+				"<leader>da",
+				function()
+					require("doing").add()
+				end,
+				{ desc = "Add Do" },
+			},
+			{
+				"<leader>dn",
+				function()
+					require("doing").done()
+				end,
+				{ desc = " Done " },
+			},
+			{
+				"<leader>de",
+				function()
+					require("doing").edit()
+				end,
+				{ desc = " Do edit" },
+			},
+		},
+	},
+	-- line
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
 }
