@@ -10,34 +10,60 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
+-- Info column
+vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+-- Line
+vim.opt.statusline = "[%{mode()}] %f %y %m %r %= %l,%c "
+vim.opt.laststatus = 2
+vim.o.cmdheight = 0
 
 -- Yank
 local map = vim.keymap.set
 
 -- Yank vers le clipboard système
-map('n', 'y', '"+y')
-map('n', 'yy', '"+Y')
--- Coller depuis le clipboard système
-map({'n', 'v'}, 'p', '"+p', { desc = 'Paste from system clipboard' })
-map({'n', 'v'}, 'P', '"+P', { desc = 'Paste before from system clipboard' })
-map({'n'}, "<tab>", "<c-w>w", { desc = "Go other pane"})
+map({ "n", "v" }, "<C-c>", '"+y')
+map({ "n", "v" }, "<C-x>", '"+x')
+map({ "n" }, "<tab>", "<c-w>w", { desc = "Go other pane" })
 
 -- Transparent
 require("transparent").setup({
-  -- table: default groups
-  groups = {
-    'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
-    'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
-    'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
-    'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
-    'EndOfBuffer','SnacksPicker' 
-  },
-  -- table: additional groups that should be cleared
-  extra_groups = {},
-  -- table: groups you don't want to clear
-  exclude_groups = {},
-  -- function: code to be executed after highlight groups are cleared
-  -- Also the user event "TransparentClear" will be triggered
-  on_clear = function() end,
+	-- table: default groups
+	groups = {
+		"Normal",
+		"NormalNC",
+		"Comment",
+		"Constant",
+		"Special",
+		"Identifier",
+		"Statement",
+		"PreProc",
+		"Type",
+		"Underlined",
+		"Todo",
+		"String",
+		"Function",
+		"Conditional",
+		"Repeat",
+		"Operator",
+		"Structure",
+		"LineNr",
+		"NonText",
+		"SignColumn",
+		"CursorLine",
+		"CursorLineNr",
+		"StatusLine",
+		"StatusLineNC",
+		"EndOfBuffer",
+		"SnacksPicker",
+	},
+	-- table: additional groups that should be cleared
+	extra_groups = {},
+	-- table: groups you don't want to clear
+	exclude_groups = {},
+	-- function: code to be executed after highlight groups are cleared
+	-- Also the user event "TransparentClear" will be triggered
+	on_clear = function() end,
 })

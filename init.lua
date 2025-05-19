@@ -1,3 +1,5 @@
 require("config.lazy")
 require("config.options")
 require("config.theme")
+require("config.mason")
+require("config.harpoon")
