@@ -12,7 +12,12 @@ return {
 	{
 		"zootedb0t/citruszest.nvim",
 		"tomasr/molokai",
+		"lissaferreira/dalton-vim",
+		"NLKNguyen/papercolor-theme",
+		"ayu-theme/ayu-vim",
 	},
+	{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
+	{ "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
 	{
 		"Biscuit-Theme/nvim",
 		as = "biscuit",
@@ -63,39 +68,6 @@ return {
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	-- TODO
-	{
-		"Hashino/doing.nvim",
-		cmd = "Do",
-		keys = {
-			{
-				"<leader>da",
-				function()
-					require("doing").add()
-				end,
-				{ desc = "Add Do" },
-			},
-			{
-				"<leader>dn",
-				function()
-					require("doing").done()
-				end,
-				{ desc = " Done " },
-			},
-			{
-				"<leader>de",
-				function()
-					require("doing").edit()
-				end,
-				{ desc = " Do edit" },
-			},
-		},
-	},
-	-- line
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
 	-- Iron
 	{ "Vigemus/iron.nvim" },
 	-- Treesitter
@@ -106,9 +78,61 @@ return {
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 		opts = {},
 	},
-	-- Session
+	-- CSV
+	{ "mechatroner/rainbow_csv" },
+	-- Line
 	{
-		"jedrzejboczar/possession.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
+		"sontungexpt/sttusline",
+		branch = "table_version",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		event = { "BufEnter" },
+		config = function(_, opts)
+			require("sttusline").setup()
+		end,
+	},
+	-- Trouble and todo
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
+	{
+		"folke/trouble.nvim",
+		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		cmd = "Trouble",
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
 	},
 }

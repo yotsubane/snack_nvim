@@ -27,6 +27,7 @@ local map = vim.keymap.set
 map({ "n", "v" }, "<C-c>", '"+y')
 map({ "n", "v" }, "<C-x>", '"+x')
 map({ "n" }, "<tab>", "<c-w>w", { desc = "Go other pane" })
+map({ "n" }, "<leader>bD", ":%bd|e#<cr>", { desc = "delete other buffers" })
 
 -- Transparent
 require("transparent").setup({
@@ -67,11 +68,6 @@ require("transparent").setup({
 	-- Also the user event "TransparentClear" will be triggered
 	on_clear = function() end,
 })
-require("lualine").setup({
-	winbar = {
-		lualine_a = { require("doing").status },
-	},
-})
 -- Completion
 vim.opt.pumheight = 10
 require("mini.completion").setup({
@@ -109,6 +105,7 @@ require("nvim-treesitter.configs").setup({
 		"markdown_inline",
 		"regex",
 		"sql",
+		"csv",
 	},
 	sync_install = true,
 	auto_install = true,
