@@ -20,6 +20,8 @@ vim.opt.statusline = "[%{mode()}] %f %y %m %r %= %l,%c "
 vim.opt.laststatus = 2
 vim.o.cmdheight = 0
 
+require("mini.sessions").setup()
+
 -- Yank
 local map = vim.keymap.set
 
