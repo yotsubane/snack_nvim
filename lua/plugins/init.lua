@@ -10,6 +10,9 @@ return {
 	},
 	-- Themes
 	{
+		"liuchengxu/space-vim-dark",
+		"yassinebridi/vim-purpura",
+		"ttak0422/morimo",
 		"zootedb0t/citruszest.nvim",
 		"tomasr/molokai",
 		"lissaferreira/dalton-vim",
@@ -22,6 +25,7 @@ return {
 		"Biscuit-Theme/nvim",
 		as = "biscuit",
 	},
+	{ "projekt0n/github-nvim-theme", name = "github-theme" },
 	-- Transparency
 	{ "xiyaowong/transparent.nvim" },
 	-- Mini
@@ -82,16 +86,10 @@ return {
 	{ "mechatroner/rainbow_csv" },
 	-- Line
 	{
-		"sontungexpt/sttusline",
-		branch = "table_version",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		event = { "BufEnter" },
-		config = function(_, opts)
-			require("sttusline").setup()
-		end,
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
+
 	-- Trouble and todo
 	{
 		"folke/todo-comments.nvim",

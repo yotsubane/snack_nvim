@@ -1,4 +1,10 @@
 -- ✅ Installer Mason et configurer les LSPs
+vim.diagnostic.config({
+	virtual_text = true, -- Affiche les erreurs inline
+	signs = true, -- Affiche les icônes dans la gutter
+	underline = true,
+	update_in_insert = false,
+})
 require("mason").setup({
 	ui = {
 		icons = {
@@ -9,8 +15,10 @@ require("mason").setup({
 	},
 })
 
-
-require("lspconfig").pyright.setup({}) -- LSP pour Python
+-- require("lspconfig").pyright.setup({}) -- LSP pour Python
+-- require("lspconfig").ruff.setup({}) -- LSP pour Python
+-- require("lspconfig").basedpyright.setup({})
+require("lspconfig").jedi_language_server.setup({})
 require("lspconfig").denols.setup({}) -- LSP pour TypeScript/JavaScript (Deno)
 require("lspconfig").lua_ls.setup({}) -- LSP pour Lua
 require("lspconfig").marksman.setup({}) -- LSP pour Markdown
