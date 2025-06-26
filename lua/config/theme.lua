@@ -1,1 +1,1 @@
-vim.cmd('colorscheme nightfly')
+vim.cmd('colorscheme evergarden-winter')

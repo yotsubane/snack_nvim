@@ -18,14 +18,45 @@ return {
 		"lissaferreira/dalton-vim",
 		"NLKNguyen/papercolor-theme",
 		"ayu-theme/ayu-vim",
+		"Mofiqul/vscode.nvim",
+		"katawful/kat.nvim",
 	},
 	{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 	{ "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+	{ "rose-pine/neovim", name = "rose-pine" },
 	{
 		"Biscuit-Theme/nvim",
 		as = "biscuit",
 	},
-	{ "projekt0n/github-nvim-theme", name = "github-theme" },
+	{
+		"everviolet/nvim",
+		name = "evergarden",
+		priority = 1000, -- Colorscheme plugin is loaded first before any other plugins
+		opts = {
+			theme = {
+				variant = "fall", -- 'winter'|'fall'|'spring'|'summer'
+				accent = "green",
+			},
+			editor = {
+				transparent_background = false,
+				sign = { color = "none" },
+				float = {
+					color = "mantle",
+					invert_border = false,
+				},
+				completion = {
+					color = "surface0",
+				},
+			},
+		},
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+	{ "catppuccin/nvim", name = "catppuccin" },
 	-- Transparency
 	{ "xiyaowong/transparent.nvim" },
 	-- Mini
@@ -134,4 +165,7 @@ return {
 		},
 	},
 	{ "mrjones2014/smart-splits.nvim" },
+	-- DAP
+	{ "mfussenegger/nvim-dap" },
+	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 }
