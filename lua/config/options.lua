@@ -1,3 +1,5 @@
+-- FOLD
+vim.opt.foldcolumn = "0"
 -- BASIC
 vim.wo.relativenumber = true
 vim.wo.number = true
@@ -26,7 +28,7 @@ require("mini.sessions").setup()
 local map = vim.keymap.set
 
 -- Yank vers le clipboard système
-map({ "n", "v" }, "<C-c>", '"+y')
+map({ "n", "v" }, "y", '"+y')
 map({ "n", "v" }, "<C-x>", '"+x')
 map({ "n" }, "<tab>", "<c-w>w", { desc = "Go other pane" })
 map({ "n" }, "<leader>bD", ":%bd|e#<cr>", { desc = "delete other buffers" })

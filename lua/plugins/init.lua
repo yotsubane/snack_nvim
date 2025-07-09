@@ -20,6 +20,7 @@ return {
 		"ayu-theme/ayu-vim",
 		"Mofiqul/vscode.nvim",
 		"katawful/kat.nvim",
+		"rebelot/kanagawa.nvim",
 	},
 	{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 	{ "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
@@ -168,4 +169,48 @@ return {
 	-- DAP
 	{ "mfussenegger/nvim-dap" },
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+	-- orgmode
+	{
+		"nvim-orgmode/orgmode",
+		event = "VeryLazy",
+		ft = { "org" },
+		config = function()
+			-- Setup orgmode
+			require("orgmode").setup({
+				org_agenda_files = { "~/orgfiles/**/*", "C:/Users/davidd/Projets/Argos.Intranet.API.ARMADA/armada.org" },
+				org_default_notes_file = "~/orgfiles/refile.org",
+			})
+
+			-- NOTE: If you are using nvim-treesitter with ~ensure_installed = "all"~ option
+			-- add ~org~ to ignore_install
+			-- require('nvim-treesitter.configs').setup({
+			--   ensure_installed = 'all',
+			--   ignore_install = { 'org' },
+			-- })
+		end,
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = "kevinhwang91/promise-async",
+		config = function()
+			require("ufo").setup({
+				open_fold_hl_timeout = 150,
+				close_fold_kinds_for_ft = {
+					["*"] = { "imports", "comment" },
+				},
+				preview = {
+					mappings = {
+						scroll_down = "<C-d>",
+						scroll_up = "<C-u>",
+					},
+				},
+			})
+
+			vim.o.foldcolumn = "1"
+			vim.o.foldlevel = 99
+			vim.o.foldlevelstart = 99
+			vim.o.foldenable = true
+			vim.o.fillchars = [[eob: ,foldclose:>,foldopen:v,fold: ,foldsep: ]]
+		end,
+	},
 }
