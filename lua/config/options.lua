@@ -32,6 +32,8 @@ map({ "n", "v" }, "y", '"+y')
 map({ "n", "v" }, "<C-x>", '"+x')
 map({ "n" }, "<tab>", "<c-w>w", { desc = "Go other pane" })
 map({ "n" }, "<leader>bD", ":%bd|e#<cr>", { desc = "delete other buffers" })
+map({ "i" }, "jj", "<ESC>")
+map({ "i" }, "jk", "<ESC>")
 
 -- Transparent
 require("transparent").setup({
@@ -111,10 +113,19 @@ require("nvim-treesitter.configs").setup({
 		"sql",
 		"csv",
 	},
+	ignore_install = { "org" },
 	sync_install = true,
 	auto_install = true,
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = true,
 	},
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "NeogitStatus", "org", "nvcheatsheet", "neo-tree" },
+	callback = function()
+		require("ufo").detach()
+		vim.opt_local.foldenable = false
+		vim.opt_local.foldcolumn = "0"
+	end,
 })

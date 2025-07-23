@@ -23,6 +23,7 @@ require("lspconfig").denols.setup({})
 require("lspconfig").lua_ls.setup({})
 require("lspconfig").marksman.setup({})
 require("lspconfig").r_language_server.setup({})
+require("lspconfig").sqlls.setup({})
 
 -- Linting
 require("lint").linters.flake8.args = { "--max-line-length=100" }
@@ -30,6 +31,7 @@ require("lint").linters.flake8.args = { "--max-line-length=100" }
 require("lint").linters_by_ft = {
 	python = { "flake8" },
 	javascript = { "eslint" },
+	sql = { "sqlfluff" },
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
@@ -51,6 +53,7 @@ require("conform").setup({
 		html = { "prettier" },
 		css = { "prettier" },
 		lua = { "stylua" },
+		sql = { "sql_formatter" },
 	},
 	formatters = {
 		black = {
@@ -58,6 +61,14 @@ require("conform").setup({
 		},
 		prettier = {
 			prepend_args = { "--tab-width", "4" },
+		},
+		sql_formatter = {
+			command = "sql-formatter",
+			args = {
+				"--language",
+				"tsql",
+			},
+			stdin = true,
 		},
 	},
 })

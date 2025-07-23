@@ -1,1 +1,1 @@
-vim.cmd('colorscheme space-vim-dark')
+vim.cmd('colorscheme catppuccin-mocha')

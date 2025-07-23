@@ -107,12 +107,18 @@ return {
 	-- Iron
 	{ "Vigemus/iron.nvim" },
 	-- Treesitter
-	{ "nvim-treesitter/nvim-treesitter" },
+	{ "nvim-treesitter/nvim-treesitter", dependencies = { "OXY2DEV/markview.nvim" }, lazy = false },
 	-- Mardown
+	-- {
+	-- 	"MeanderingProgrammer/render-markdown.nvim",
+	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+	-- 	opts = {},
+	-- },
 	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-		opts = {},
+		"OXY2DEV/markview.nvim",
+		lazy = false,
+
+		priority = 49,
 	},
 	-- CSV
 	{ "mechatroner/rainbow_csv" },
@@ -189,6 +195,7 @@ return {
 			-- })
 		end,
 	},
+	-- Fold
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = "kevinhwang91/promise-async",
