@@ -19,6 +19,10 @@ M.opts = {
 	win = { enabled = true },
 	words = { enabled = true },
 	zen = { enabled = true },
+	image = { enabled = true },
+	-- input = { enabled = true },
+	scroll = { enabled = true },
+	-- statuscolumn = { enabled = true },
 
 	styles = {
 		notification = {
@@ -387,7 +391,7 @@ M.keys = {
 		desc = "Goto Declaration",
 	},
 	{
-		"gr",
+		"gR",
 		function()
 			Snacks.picker.lsp_references()
 		end,
@@ -483,7 +487,7 @@ M.init = function()
 
 			-- Activer les raccourcis de bascule
 			Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
-			Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+			Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uW")
 			Snacks.toggle.diagnostics():map("<leader>uD")
 			Snacks.toggle
 				.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })

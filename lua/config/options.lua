@@ -1,3 +1,5 @@
+-- OVERLAPPING
+vim.opt.shellslash = true
 -- FOLD
 vim.opt.foldcolumn = "0"
 -- BASIC
@@ -96,6 +98,7 @@ require("mini.completion").setup({
 		scroll_down = "<C-f>",
 		scroll_up = "<C-b>",
 	},
+
 	set_vim_settings = true,
 })
 

@@ -21,6 +21,7 @@ return {
 		"Mofiqul/vscode.nvim",
 		"katawful/kat.nvim",
 		"rebelot/kanagawa.nvim",
+		"ptdewey/monalisa-nvim",
 	},
 	{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
 	{ "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
@@ -219,5 +220,13 @@ return {
 			vim.o.foldenable = true
 			vim.o.fillchars = [[eob: ,foldclose:>,foldopen:v,fold: ,foldsep: ]]
 		end,
+	},
+	{
+		"zeioth/garbage-day.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		event = "VeryLazy",
+		opts = {
+			-- your options here
+		},
 	},
 }
