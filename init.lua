@@ -1,6 +1,7 @@
+vim.opt.termguicolors = true
 require("config.lazy")
-require("config.options")
 require("config.theme")
+require("config.options")
 require("config.mason")
 require("config.harpoon")
 require("config.iron")
@@ -23,6 +24,6 @@ require("runmodule").setup({
 		border = "single",
 	},
 })
-
+--
 vim.keymap.del("n", "gc")
 vim.keymap.del("n", "<leader>lp")

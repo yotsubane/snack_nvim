@@ -80,7 +80,9 @@ M.keys = {
 	{
 		"<leader>e",
 		function()
-			Snacks.explorer({ layout = { fullscreen = true, layout = { dropout = false } }, auto_close = true })
+			Snacks.explorer.open({ layout = { fullscreen = true, layout = { dropout = false } }, auto_close = true })
+			-- Snacks.picker.explorer({ auto_close = true })
+			-- Snacks.explorer.open()
 		end,
 		desc = "Explorer",
 	},
@@ -215,7 +217,7 @@ M.keys = {
 		end,
 		desc = "Grep",
 	},
-	-- search 05 59 04 69 20
+	-- search
 	{
 		'<leader>s"',
 		function()

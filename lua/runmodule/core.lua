@@ -141,10 +141,30 @@ function M.run_current_module()
 	})
 end
 
+function M.copy_run_command()
+    local file = vim.fn.expand("%:p")
+    local relpath = vim.fn.fnamemodify(file, ":~:.")
+    local module = utils.get_module_name(relpath)
+
+    local cmd = { config.options.command, "-u", "-m", module }
+    local cmd_str = table.concat(cmd, " ")
+
+    -- Copier dans le presse-papier
+    vim.fn.setreg("+", cmd_str) -- Utilise le registre système (nécessite +clipboard)
+    vim.fn.setreg("", cmd_str) -- Et le registre par défaut
+
+    -- Feedback visuel
+    vim.notify("Commande copiée : " .. cmd_str, vim.log.levels.INFO, { title = "runmodule" })
+end
+
 function M.setup_keymaps()
-	vim.keymap.set("n", config.options.keymap, M.run_current_module, {
-		desc = "Exécuter le module Python courant",
-	})
+    vim.keymap.set("n", config.options.keymap, M.run_current_module, {
+        desc = "Exécuter le module Python courant",
+    })
+    -- Nouveau raccourci pour copier la commande
+    vim.keymap.set("n", "<leader>C", M.copy_run_command, {
+        desc = "Copier la commande d'exécution du module",
+    })
 end
 
 return M

@@ -1,1 +1,1 @@
-vim.cmd('colorscheme citruszest')
+vim.cmd('colorscheme vscode')

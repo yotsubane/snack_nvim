@@ -32,7 +32,7 @@ local map = vim.keymap.set
 -- Yank vers le clipboard système
 map({ "n", "v" }, "y", '"+y')
 map({ "n", "v" }, "<C-x>", '"+x')
-map({ "n" }, "<tab>", "<c-w>w", { desc = "Go other pane" })
+map({ "n" }, "<leader>w", "<c-w>w", { desc = "Go other pane" })
 map({ "n" }, "<leader>bD", ":%bd|e#<cr>", { desc = "delete other buffers" })
 map({ "i" }, "jj", "<ESC>")
 map({ "i" }, "jk", "<ESC>")

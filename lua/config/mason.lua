@@ -1,12 +1,4 @@
--- diagnostics
-vim.diagnostic.config({
-	virtual_text = true,
-	signs = true,
-	underline = true,
-	update_in_insert = false,
-})
-
--- mason setup
+-- ============================== Mason UI =============================
 require("mason").setup({
 	ui = {
 		icons = {
@@ -17,66 +9,93 @@ require("mason").setup({
 	},
 })
 
--- LSP servers
-require("lspconfig").pyright.setup({})
-require("lspconfig").denols.setup({})
-require("lspconfig").lua_ls.setup({})
-require("lspconfig").marksman.setup({})
-require("lspconfig").r_language_server.setup({})
-require("lspconfig").sqlls.setup({})
+-- ============================ LSP servers ============================
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "pyright",
+    "denols",
+    "lua_ls",
+    "marksman",
+    -- "r_language_server",
+    "sqlls",
+  },
+})
 
--- Linting
-require("lint").linters.flake8.args = { "--max-line-length=100" }
+-- Config des LSP
+local lspconfig = require("lspconfig")
 
+lspconfig.pyright.setup({})
+lspconfig.denols.setup({})
+lspconfig.lua_ls.setup({})
+lspconfig.marksman.setup({})
+-- lspconfig.r_language_server.setup({})
+lspconfig.sqlls.setup({})
+
+-- ============================= Linting ===============================
 require("lint").linters_by_ft = {
 	python = { "flake8" },
 	javascript = { "eslint" },
 	sql = { "sqlfluff" },
 }
 
+-- Lint en continu : sur sauvegarde ET à chaque sortie du mode insertion
 vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
-	pattern = "*.{py,js}",
+	pattern = "*.py",
 	callback = function()
 		require("lint").try_lint()
 	end,
 })
 
--- Formatting
+-- =========================== Formatting ==============================
 require("conform").setup({
-	async = true,
-	format_on_save = {
-		timeout_ms = 2000,
+  async = true,
+  formatters_by_ft = {
+    -- python = { "ruff_format" },
+	python = {"black"},
+    javascript = { "prettier" },
+    html = { "prettier" },
+    css = { "prettier" },
+    lua = { "stylua" },
+    sql = { "sql_formatter" },
+  },
+  formatters = {
+    -- ruff_format = {
+    --   command = "ruff",
+    --   args = { "format", "-" },
+    --   stdin = true,
+    -- },
+	black = {
+		prepend_args = { "--line-length", "60"},
 	},
-	formatters_by_ft = {
-		python = { "black" },
-		javascript = { "prettier" },
-		html = { "prettier" },
-		css = { "prettier" },
-		lua = { "stylua" },
-		sql = { "sql_formatter" },
-	},
-	formatters = {
-		black = {
-			prepend_args = { "--line-length", "60" },
-		},
-		prettier = {
-			prepend_args = { "--tab-width", "4" },
-		},
-		sql_formatter = {
-			command = "sql-formatter",
-			args = {
-				"--language",
-				"tsql",
-			},
-			stdin = true,
-		},
-	},
+    prettier = {
+      prepend_args = { "--tab-width", "4" },
+    },
+    sql_formatter = {
+      command = "sql-formatter",
+      args = { "--language", "tsql" },
+      stdin = true,
+    },
+  },
 })
 
--- Format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function(args)
-		require("conform").format({ bufnr = args.buf })
-	end,
+-- Commande de formatage
+vim.api.nvim_create_user_command("Format", function()
+  require("conform").format({ async = true })
+end, {})
+
+vim.keymap.set("n", "<leader>F", ":Format<CR>", { desc = "Format current buffer" })
+
+-- ========================= Diagnostics =============================
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
 })
+
+-- ========================= Pyright config (important !) ==============
+-- Ajoute dans la racine de ton projet Python un fichier "pyrightconfig.json" :
+-- {
+--   "exclude": ["**/node_modules", "**/.venv", "**/env", "**/venv", "**/__pycache__", ".git", ".mypy_cache", ".pytest_cache"]
+-- }
+-- Cela accélère l'indexation Pyright et évite les ralentissements dans Neovim.
