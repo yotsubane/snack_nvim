@@ -12,6 +12,7 @@ require("config.line")
 require("config.dap")
 require("config.dap_ui")
 require("config.noerrors")
+require("config.tab_line")
 -- PYDOC
 local pydoc = require("pydoc")
 
