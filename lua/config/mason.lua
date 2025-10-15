@@ -22,14 +22,12 @@ require("mason-lspconfig").setup({
 })
 
 -- Config des LSP
-local lspconfig = require("lspconfig")
 
-lspconfig.pyright.setup({})
-lspconfig.denols.setup({})
-lspconfig.lua_ls.setup({})
-lspconfig.marksman.setup({})
--- lspconfig.r_language_server.setup({})
-lspconfig.sqlls.setup({})
+vim.lsp.config("pyright", {})
+vim.lsp.config("denols", {})
+vim.lsp.config("lua_ls", {})
+vim.lsp.config("marksman", {})
+vim.lsp.config("sqlls", {})
 
 -- ============================= Linting ===============================
 require("lint").linters_by_ft = {

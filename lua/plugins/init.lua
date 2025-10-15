@@ -1,49 +1,4 @@
 return {
-	  {'romgrk/barbar.nvim',
-		dependencies = {
-		  'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-		  'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-		},
-		init = function() vim.g.barbar_auto_setup = false end,
-		opts = {
-		  -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-		  -- animation = true,
-		  -- insert_at_start = true,
-		  -- …etc.
-		},
-		version = '^1.0.0', -- optional: only update when a new 1.x version is released
-	  },
-	-- Doc + signatures + sidebar VS Code-like
-	{
-	  "ray-x/lsp_signature.nvim",
-	  event = "VeryLazy",
-	  config = function()
-		require("lsp_signature").setup({
-		  hint_enable = true,
-		  floating_window = false,
-		  hint_prefix = "💡 ",
-		  handler_opts = { border = "rounded" },
-		})
-	  end,
-	},
-	{
-	  "dnlhc/glance.nvim",
-	  config = function()
-		require("glance").setup()
-	  end,
-	  keys = {
-		{ "gd", "<cmd>Glance definitions<CR>", desc = "Peek Definition" },
-		{ "gr", "<cmd>Glance references<CR>", desc = "Peek References" },
-	  },
-	},
-	{
-	  "danymat/neogen",
-	  dependencies = "nvim-treesitter/nvim-treesitter",
-	  config = true,
-	  keys = {
-		{ "<leader>nd", function() require("neogen").generate() end, desc = "Generate docstring" },
-	  },
-	},
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*", -- toujours la dernière version stable
