@@ -1,5 +1,62 @@
 return {
-	-- MARKDOWN PDF
+	-- Doc + signatures + sidebar VS Code-like
+	{
+	  "ray-x/lsp_signature.nvim",
+	  event = "VeryLazy",
+	  config = function()
+		require("lsp_signature").setup({
+		  hint_enable = true,
+		  floating_window = false,
+		  hint_prefix = "💡 ",
+		  handler_opts = { border = "rounded" },
+		})
+	  end,
+	},
+	{
+	  "dnlhc/glance.nvim",
+	  config = function()
+		require("glance").setup()
+	  end,
+	  keys = {
+		{ "gd", "<cmd>Glance definitions<CR>", desc = "Peek Definition" },
+		{ "gr", "<cmd>Glance references<CR>", desc = "Peek References" },
+	  },
+	},
+	{
+	  "danymat/neogen",
+	  dependencies = "nvim-treesitter/nvim-treesitter",
+	  config = true,
+	  keys = {
+		{ "<leader>nd", function() require("neogen").generate() end, desc = "Generate docstring" },
+	  },
+	},
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*", -- toujours la dernière version stable
+		dependencies = {
+		  "nvim-lua/plenary.nvim",
+		},
+		opts = {
+		  workspaces = {
+			{
+			  name = "notes",
+			  path = "C:/Users/davidd/Desktop/work", -- adapte le chemin
+			},
+		  },
+
+		  templates = {
+			  folder = "C:/Users/davidd/modele_obsi",
+			  date_format = "%Y-%m-%d-%a",
+			  time_format = "%H:%M",
+		  },
+		},
+  	},
+	{
+	  "GCBallesteros/jupytext.nvim",
+	  config = true,
+	  -- Depending on your nvim distro or config you may need to make the loading not lazy
+	  -- lazy=false,
+	},
 	{
 		"arminveres/md-pdf.nvim",
 		branch = "main", -- you can assume that main is somewhat stable until releases will be made

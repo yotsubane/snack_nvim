@@ -1,6 +1,7 @@
 vim.opt.termguicolors = true
 require("config.lazy")
 require("config.theme")
+require("config.notebook")
 require("config.options")
 require("config.mason")
 require("config.harpoon")

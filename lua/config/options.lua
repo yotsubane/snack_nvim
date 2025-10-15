@@ -30,8 +30,11 @@ require("mini.sessions").setup()
 local map = vim.keymap.set
 
 -- Yank vers le clipboard système
-map({ "n", "v" }, "y", '"+y')
-map({ "n", "v" }, "<C-x>", '"+x')
+map({ "n", "v" }, "<C-y>", '"+y')  -- copier
+map("n", "<C-Y>", '"+Y')           -- copier la ligne
+map({ "n", "v" }, "<C-p>", '"+p')  -- coller après
+map({ "n", "v" }, "<C-P>", '"+P')  -- coller avant
+map({ "n", "v" }, "<C-x>", '"+x')  -- couper
 map({ "n" }, "<leader>w", "<c-w>w", { desc = "Go other pane" })
 map({ "n" }, "<leader>bD", ":%bd|e#<cr>", { desc = "delete other buffers" })
 map({ "i" }, "jj", "<ESC>")
