@@ -23,11 +23,37 @@ require("mason-lspconfig").setup({
 
 -- Config des LSP
 
-vim.lsp.config("pyright", {})
-vim.lsp.config("denols", {})
-vim.lsp.config("lua_ls", {})
-vim.lsp.config("marksman", {})
-vim.lsp.config("sqlls", {})
+
+vim.lsp.config('pyright', {
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "basic",
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+})
+
+vim.lsp.config('denols', {})
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      diagnostics = { globals = { 'vim' } },
+    },
+  },
+})
+vim.lsp.config('marksman', {})
+vim.lsp.config('sqlls', {})
+
+-- Active tout ce que tu as configuré ci-dessus
+vim.lsp.enable('pyright')
+vim.lsp.enable('denols')
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('marksman')
+vim.lsp.enable('sqlls')
+
 
 -- ============================= Linting ===============================
 require("lint").linters_by_ft = {

@@ -1,3 +1,21 @@
+
+vim.o.updatetime = 700
+
+vim.diagnostic.config({
+  virtual_text = false,  -- ❌ plus à droite
+  signs = true,          -- ✅ garde les symboles à gauche
+  underline = true,      -- souligne les erreurs
+  update_in_insert = false,
+  severity_sort = true,  -- trie les erreurs par gravité
+  virtual_lines = false
+})
+
+
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--   callback = function()
+--     vim.lsp.buf.hover()
+--   end
+-- })
 -- OVERLAPPING
 vim.opt.shellslash = true
 -- FOLD
@@ -39,6 +57,8 @@ map({ "n" }, "<leader>w", "<c-w>w", { desc = "Go other pane" })
 map({ "n" }, "<leader>bD", ":%bd|e#<cr>", { desc = "delete other buffers" })
 map({ "i" }, "jj", "<ESC>")
 map({ "i" }, "jk", "<ESC>")
+map({ "n" }, ")m", "]m")
+map({ "n" }, "(m", "[m")
 
 -- Transparent
 require("transparent").setup({

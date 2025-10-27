@@ -2,7 +2,7 @@ local M = {}
 
 M.defaults = {
 	keymap = "<leader>P",
-	command = "pydoc",
+	command = "python -m pydoc",
 	popup = {
 		width = 110,
 		height = 50,

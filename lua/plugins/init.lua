@@ -1,5 +1,14 @@
 return {
 	{
+		'sunnytamang/neodoc.nvim',
+		config = function()
+			require('neodoc').setup({
+				keymap = '<leader>g',
+				docstring_style = 'numpy'
+			})
+		end
+	},
+	{
 		"epwalsh/obsidian.nvim",
 		version = "*", -- toujours la dernière version stable
 		dependencies = {
@@ -225,26 +234,6 @@ return {
 	-- DAP
 	{ "mfussenegger/nvim-dap" },
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
-	-- orgmode
-	{
-		"nvim-orgmode/orgmode",
-		event = "VeryLazy",
-		ft = { "org" },
-		config = function()
-			-- Setup orgmode
-			require("orgmode").setup({
-				org_agenda_files = { "~/orgfiles/**/*", "C:/Users/davidd/Projets/Argos.Intranet.API.ARMADA/armada.org" },
-				org_default_notes_file = "~/orgfiles/refile.org",
-			})
-
-			-- NOTE: If you are using nvim-treesitter with ~ensure_installed = "all"~ option
-			-- add ~org~ to ignore_install
-			-- require('nvim-treesitter.configs').setup({
-			--   ensure_installed = 'all',
-			--   ignore_install = { 'org' },
-			-- })
-		end,
-	},
 	-- Fold
 	{
 		"kevinhwang91/nvim-ufo",
