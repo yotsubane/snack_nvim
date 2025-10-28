@@ -57,8 +57,8 @@ map({ "n" }, "<leader>w", "<c-w>w", { desc = "Go other pane" })
 map({ "n" }, "<leader>bD", ":%bd|e#<cr>", { desc = "delete other buffers" })
 map({ "i" }, "jj", "<ESC>")
 map({ "i" }, "jk", "<ESC>")
-map({ "n" }, ")m", "]m")
-map({ "n" }, "(m", "[m")
+map({ "n", "v" }, ")m", "]m")
+map({ "n", "v" }, "(m", "[m")
 
 -- Transparent
 require("transparent").setup({
